@@ -374,7 +374,8 @@
 		"vscode:prepublish": "npm run compile",
 		"compile": "npm install && tsc -p ./ && ./node_modules/.bin/electron-rebuild",
 		"watch": "tsc -watch -p ./",
-		"lint": "eslint . --ext .ts,.tsx"
+		"lint": "eslint . --ext .ts,.tsx",
+		"lint:fix": "npm run lint -- --fix"
 	},
 	"devDependencies": {
 		"@types/node": "^14.14.33",
