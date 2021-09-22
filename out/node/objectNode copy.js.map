@@ -1,0 +1,1 @@
+{"version":3,"file":"objectNode copy.js","sourceRoot":"","sources":["../../src/node/objectNode copy.ts"],"names":[],"mappings":";;;AACA,6CAA0C;AAK1C,MAAa,UAAW,SAAQ,uBAAU;IACzC,YAAY,EAAU,EAAE,KAAa,EAAE,WAAmB,EAAE,IAAY,EAAU,cAA8B;QAC/G,KAAK,CAAC,EAAE,EAAE,KAAK,EAAE,WAAW,EAAE,IAAI,CAAC,CAAC;QAD6C,mBAAc,GAAd,cAAc,CAAgB;IAEhH,CAAC;CACD;AAJD,gCAIC"}
