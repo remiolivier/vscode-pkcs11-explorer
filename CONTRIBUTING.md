@@ -9,8 +9,6 @@ If you want explore the source code of this extension yourself, it's easy to get
 1. Clone the repository
 1. `npm install`
 1. `./node_modules/.bin/electron-rebuild`
-1. Run
-    - `npm run watch`
-    - Or you can start directly from vscode  with `F5` to start debugging
+1. Run from vscode with `F5` to start debugging
 
 Pkcs11 Explorer view should be shown in Explorer.
