@@ -1,20 +1,12 @@
-# Views & View Containers
+# PKCS11 Explorer extension for Visual Studio Code
 
-This sample demonstrates how to implement and contribute a tree view in VS Code. This includes:
+A [Visual Studio Code](https://code.visualstudio.com/) [extension](https://marketplace.visualstudio.com/VSCode) with support for [PKCS#11 interface](https://docs.oasis-open.org/pkcs11/pkcs11-base/v2.40/os/pkcs11-base-v2.40-os.html). This extension enables interactionswith cryptographic devices such as HSM (Hardware Security Modules) and smart cards such as
+- [SoftHSM2](https://www.opendnssec.org/softhsm/)
+- [Thales NShield](https://www.thales-esecurity.com/products-and-services/products-and-services/hardware-security-modules/general-purpose-hsms/nshield-solo)
+- [Safenet Luna HSMs](http://www.safenet-inc.com/)
+- [RuToken](http://www.rutoken.ru/)  
 
-- Contributing views and view containers.
-- Contributing actions in various location of the view.
-- Implementing the tree data provider for the view.
-- Creating and working with the view.
-
-This sample provides following views
-
-- Node dependencies view
-- Ftp file explorer view
-
-Following example shows Node dependencies view in Package Explorer View container.
-
-![Package Explorer](./resources/package-explorer.png)
+This extension relies on [PeculiarVentures/pkcs11js](https://github.com/PeculiarVentures/pkcs11js) for interacting with PKCS#11 devices. For a list of all tested devices and capabilities, please visit their [repo](https://github.com/PeculiarVentures/pkcs11js).
 
 ## Actions
 
@@ -37,39 +29,15 @@ PKCS#11 Explorer supports the following operations:
   - Get attribute
   - Read
   - Rename
+- Crypto operations
+  - Generate AES/RSA/ECC Key
+  - Generate AES/RSA/ECC Key Pair
+  - Generate 
+  - Sign/Verify
+  - Encrypt/Decrypt
+  - Digest
+  - Export Certificate/Public Key
 
+## Contributing
 
-## VS Code API
-
-This sample uses following contribution points, activation events and APIs
-
-### Contribution Points
-
-- `views`
-- `viewsContainers`
-- `menu`
-  - `view/title`
-  - `view/item/context`
-
-### Activation Events
-
-- `onView:${viewId}`
-
-### APIs
-
-- `window.createTreeView`
-- `window.registerTreeDataProvider`
-- `TreeView`
-- `TreeDataProvider`
-
-Refer to [Usage](./USAGE.md) document for more details.
-
-## Running the Sample
-
-- Open this example in VS Code Insiders
-- `npm install`
-- `./node_modules/.bin/electron-rebuild`
-- `npm run watch`
-- `F5` to start debugging
-- Node dependencies view is shown in Package explorer view container in Activity bar.
-- FTP file explorer view should be shown in Explorer
+If you're interested in contributing, or want to explore the source code of this extension yourself, see the [contributing guide](CONTRIBUTING.md)
