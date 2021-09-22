@@ -3,11 +3,11 @@
 out/test/**
 test/**
 src/**
-!node_modules/graphene-pk11/**
+!node_modules/pkcs11js/**
 node_modules/**
 **/*.map
 .gitignore
 **/*.ts
 **/tsconfig.json
 !file.ts
-webpack.config.js
+**/webpack.config.js
