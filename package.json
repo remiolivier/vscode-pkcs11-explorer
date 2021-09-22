@@ -373,7 +373,8 @@
 	},
 	"scripts": {
 		"vscode:prepublish": "webpack --mode production",
-		"compile": "npm install && tsc -p ./ && ./node_modules/.bin/electron-rebuild",
+		"rebuild": "./node_modules/.bin/electron-rebuild",
+		"compile": "npm install && tsc -p ./ && npm run rebuild",
 		"watch": "tsc -watch -p ./",
 		"lint": "eslint . --ext .ts,.tsx",
 		"lint:fix": "npm run lint -- --fix",
