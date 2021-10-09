@@ -930,6 +930,57 @@ export class Pkcs11Model extends Disposable {
 		}
 	}
 
+	public async importCertificate(node: SlotNode): Promise<void> {
+		const session = node.session;
+		
+		const id = await Interactions.showInputBox("Certificate ID");
+		if (id == undefined) {
+			return;
+		}
+
+		const label = await Interactions.showInputBox("Certificate Label");
+		if (label == undefined) {
+			return;
+		}
+
+		const certificateFormat = await Interactions.showQuickPick(
+			Definitions.SupportedCertificatInput,
+			"Certificate format");
+
+		if (certificateFormat == undefined) {
+			return;
+		}
+		
+		const pickedUri = await Interactions.showOpenDialog();
+
+		if (pickedUri == undefined) {
+			return;
+		}
+
+		try {
+			const certificate = fs.readFileSync(pickedUri[0].path);
+
+			if (certificateFormat == "pem") {
+				session.create({
+					class: graphene.ObjectClass.CERTIFICATE,
+					certType: graphene.CertificateType.X_509,
+					private: false,
+					token: true,
+					id: Buffer.from(id),
+					label: label,
+					subject: Buffer.from("test subject"),
+					value: Buffer.from(certificate),
+				});
+			}
+			else {
+				Interactions.showErrorMessage(`Format not supported`);
+			}
+		}
+		catch (err) {
+			Interactions.showErrorMessage(`Failed to import certificate ${node.label}.\n${err}`);
+		}
+	}
+
 	public async exportCertificate(node: ObjectNode): Promise<void> {
 		const dataType = await Interactions.showQuickPick(
 			Definitions.SupportedCertificateOutput,

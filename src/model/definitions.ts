@@ -231,6 +231,7 @@ export class Definitions {
 	public static readonly SupportedEccNamedCurves: string[] = ["secp192r1", "secp256r1", "secp256k1"];
 
 	public static readonly SupportedCertificateOutput: string[] = ["pem", "ascii", "base64", "hex", "utf8"];
+	public static readonly SupportedCertificatInput: string[] = ["pem"];
 	public static readonly SupportedEncodingOutput: string[] = ["ascii", "base64", "hex", "utf8"];
 	public static readonly SupportedSignEncodingInputData: string[] = ["ascii", "base64", "hex", "utf8"];
 	public static readonly SupportedSignEncodingOutputData: string[] = ["ascii", "base64", "hex", "utf8"];

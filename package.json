@@ -3,14 +3,16 @@
 	"displayName": "PKCS#11 Explorer",
 	"description": "Load PKCS#11 modules and explore their content or perform operations.",
 	"version": "0.0.1",
-	"publisher": "remiolivier",
+	"publisher": "Remi Olivier",
 	"repository": "https://github.com/remiolivier/vscode-pkcs11-explorer",
+	"license": "SEE LICENSE IN FILE LICENSE",
 	"enableProposedApi": true,
 	"engines": {
 		"vscode": "^1.61.0",
 		"node": ">=8.0.0"
 	},
 	"categories": [
+		"Visualization",
 		"Other"
 	],
 	"activationEvents": [
@@ -35,7 +37,7 @@
 			{
 				"view": "pkcs11View",
 				"contents": "No module library found.\n[Add Module](command:pkcs11View.addModule)",
-				"when": "pkcs11view.modulesCount <= 0"
+				"when": "!pkcs11view || pkcs11view.modulesCount <= 0"
 			}
 		],
 		"views": {
@@ -197,6 +199,11 @@
 				"category": "PKCS#11 Explorer"
 			},
 			{
+				"command": "pkcs11View.importCertificate",
+				"title": "Import Certificate",
+				"category": "PKCS#11 Explorer"
+			},
+			{
 				"command": "pkcs11View.exportDataObject",
 				"title": "Export",
 				"category": "PKCS#11 Explorer"
@@ -274,24 +281,29 @@
 					"group": "pkcs11-view-slot-1@5"
 				},
 				{
-					"command": "pkcs11View.initializeSlot",
+					"command": "pkcs11View.importCertificate",
 					"when": "view == pkcs11View && viewItem == slot",
 					"group": "pkcs11-view-slot-2@0"
 				},
 				{
+					"command": "pkcs11View.initializeSlot",
+					"when": "view == pkcs11View && viewItem == slot",
+					"group": "pkcs11-view-slot-3@0"
+				},
+				{
 					"command": "pkcs11View.initializeSlotUserPin",
 					"when": "view == pkcs11View && viewItem == slot",
-					"group": "pkcs11-view-slot-2@1"
+					"group": "pkcs11-view-slot-3@1"
 				},
 				{
 					"command": "pkcs11View.setSlotUserPin",
 					"when": "view == pkcs11View && viewItem == slot",
-					"group": "pkcs11-view-slot-2@2"
+					"group": "pkcs11-view-slot-3@2"
 				},
 				{
 					"command": "pkcs11View.deleteSlot",
 					"when": "view == pkcs11View && viewItem == slot",
-					"group": "pkcs11-view-slot-2@3"
+					"group": "pkcs11-view-slot-3@3"
 				},
 				{
 					"command": "pkcs11View.getAttribute",

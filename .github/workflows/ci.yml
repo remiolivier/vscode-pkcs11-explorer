@@ -62,7 +62,7 @@ jobs:
       - run: npx vsce package --target ${{ env.target }}
       - uses: actions/upload-artifact@v2
         with:
-          name: ${{ env.target }}
+          name: vscode-pkcs11-explorer-${{ env.target }}
           path: "*.vsix"
 
   # publish:

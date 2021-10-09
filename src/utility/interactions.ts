@@ -106,6 +106,15 @@ export class Interactions {
 		return answer == undefined ? undefined : answer == "yes";
 	}
 
+	public static async showOpenDialog(): Promise<vscode.Uri[]> {
+		return await vscode.window.showOpenDialog(
+		{
+			canSelectFiles: true,
+			canSelectFolders: false,
+			canSelectMany: false
+		});
+	}
+
 	public static async showQuickPick(items: string[] | Thenable<string[]>, placeholder: string): Promise<string> {
 		return await vscode.window.showQuickPick(
 		items, 
