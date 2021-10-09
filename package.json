@@ -3,7 +3,7 @@
 	"displayName": "PKCS#11 Explorer",
 	"description": "Load PKCS#11 modules and explore their content or perform operations.",
 	"version": "0.0.1",
-	"publisher": "Remi Olivier",
+	"publisher": "remiolivier",
 	"repository": "https://github.com/remiolivier/vscode-pkcs11-explorer",
 	"license": "SEE LICENSE IN FILE LICENSE",
 	"enableProposedApi": true,
