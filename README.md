@@ -8,6 +8,8 @@ A [Visual Studio Code](https://code.visualstudio.com/) [extension](https://marke
 
 This extension relies on [PeculiarVentures/pkcs11js](https://github.com/PeculiarVentures/pkcs11js) for interacting with PKCS#11 devices. For a list of all tested devices and capabilities, please visit their [repo](https://github.com/PeculiarVentures/pkcs11js).
 
+<img src="./media/explorer-overview.png" alt="PKCS#11 Explorer overview" width="40%"/>
+
 ## Actions
 
 PKCS#11 Explorer supports the following operations:

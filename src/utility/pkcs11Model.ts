@@ -48,13 +48,13 @@ export class Pkcs11Model extends Disposable {
 			return;
 		}
 
-		const modulePath = await Interactions.showInputBox("The path to the PKCS#11 library.");
+		const modulePath = await Interactions.showOpenDialog();
 
-		if (!modulePath) {
+		if (modulePath == undefined) {
 			return;
 		}
 
-		if (!fs.existsSync(modulePath)) {
+		if (!fs.existsSync(modulePath[0].path)) {
 			Interactions.showErrorMessage(`Could not add the '${moduleName}' module. '${modulePath}' does not exist.`);
 			return;
 		}
@@ -66,7 +66,7 @@ export class Pkcs11Model extends Disposable {
 			return;
 		}
 
-		this.configuration.addModule(moduleName, modulePath);
+		this.configuration.addModule(moduleName, modulePath[0].path);
 		Interactions.showInformationMessage("Module added.");
 	}
 

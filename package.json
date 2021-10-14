@@ -4,9 +4,11 @@
 	"description": "Load PKCS#11 modules and explore their content or perform operations.",
 	"version": "0.0.1",
 	"publisher": "remiolivier",
-	"repository": "https://github.com/remiolivier/vscode-pkcs11-explorer",
+	"icon": "icon.png",
+	"repository": {
+		"url": "https://github.com/remiolivier/vscode-pkcs11-explorer"
+	},
 	"license": "SEE LICENSE IN FILE LICENSE",
-	"enableProposedApi": true,
 	"engines": {
 		"vscode": "^1.61.0",
 		"node": ">=8.0.0"
@@ -14,6 +16,26 @@
 	"categories": [
 		"Visualization",
 		"Other"
+	],
+	"keywords": [
+		"pkcs11",
+		"pkcs#11",
+		"softhsm",
+		"hsm",
+		"pkcs",
+		"p11",
+		"CryptoKI",
+		"crypto",
+		"smart",
+		"card",
+		"smartcard",
+		"security",
+		"trustzone",
+		"nshield",
+		"rutoken",
+		"safenet",
+		"thales",
+		"luna"
 	],
 	"activationEvents": [
 		"onView:pkcs11View"
@@ -384,9 +406,9 @@
 		}
 	},
 	"scripts": {
-		"vscode:prepublish": "webpack --mode production",
+		"vscode:prepublish": "npm run compile",
 		"rebuild": "./node_modules/.bin/electron-rebuild",
-		"compile": "npm install && tsc -p ./ && npm run rebuild",
+		"compile": "npm install && npm rebuild && tsc -p ./",
 		"watch": "tsc -watch -p ./",
 		"lint": "eslint . --ext .ts,.tsx",
 		"lint:fix": "npm run lint -- --fix",

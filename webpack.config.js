@@ -18,8 +18,8 @@ const config = {
   },
   devtool: 'source-map',
   externals: {
-    vscode: 'commonjs vscode', // the vscode-module is created on-the-fly and must be excluded. Add other modules that cannot be webpack'ed, 📖 -> https://webpack.js.org/configuration/externals/
-	pkcs11js: 'require("pkcs11js")',
+    vscode: 'commonjs vscode graphene-pk11 tslib', // the vscode-module is created on-the-fly and must be excluded. Add other modules that cannot be webpack'ed, 📖 -> https://webpack.js.org/configuration/externals/
+	  pkcs11js: 'require("pkcs11js")',
 	},
   resolve: {
     // support reading TypeScript and JavaScript files, 📖 -> https://github.com/TypeStrong/ts-loader

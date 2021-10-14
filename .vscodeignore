@@ -4,10 +4,12 @@ out/test/**
 test/**
 src/**
 !node_modules/pkcs11js/**
+!node_modules/graphene-pk11/**
+!node_modules/tslib/**
 node_modules/**
 **/*.map
 .gitignore
-**/*.ts
+# **/*.ts
 **/tsconfig.json
 !file.ts
 **/webpack.config.js
