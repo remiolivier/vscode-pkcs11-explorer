@@ -1,0 +1,447 @@
+{
+	"name": "pkcs11-explorer",
+	"displayName": "PKCS#11 Explorer",
+	"description": "Load PKCS#11 modules and explore their content or perform operations.",
+	"version": "0.0.1",
+	"publisher": "remiolivier",
+	"icon": "icon.png",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/remiolivier/vscode-pkcs11-explorer"
+	},
+	"license": "MIT",
+	"homepage": "https://github.com/remiolivier/vscode-pkcs11-explorer",
+	"bugs": {
+		"url": "https://github.com/remiolivier/vscode-pkcs11-explorer/issues"
+	},
+	"engines": {
+		"vscode": "^1.61.0",
+		"node": ">=8.0.0"
+	},
+	"categories": [
+		"Visualization",
+		"Other"
+	],
+	"keywords": [
+		"pkcs11",
+		"pkcs#11",
+		"softhsm",
+		"hsm",
+		"pkcs",
+		"p11",
+		"CryptoKI",
+		"crypto",
+		"smart",
+		"card",
+		"smartcard",
+		"security",
+		"trustzone",
+		"nshield",
+		"rutoken",
+		"safenet",
+		"thales",
+		"luna"
+	],
+	"activationEvents": [
+		"onView:pkcs11View"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"configuration": [
+			{
+				"title": "PKCS#11 Configuration",
+				"properties": {
+					"conf.resource.pkcs11view.data": {
+						"type": "object",
+						"default": null,
+						"description": "Resource configuration: Contains the PKCS#11 explorer modules configuration",
+						"scope": "resource"
+					}
+				}
+			}
+		],
+		"viewsWelcome": [
+			{
+				"view": "pkcs11View",
+				"contents": "No module library found.\n[Add Module](command:pkcs11View.addModule)",
+				"when": "!pkcs11view || pkcs11view.modulesCount <= 0"
+			}
+		],
+		"views": {
+			"explorer": [
+				{
+					"id": "pkcs11View",
+					"name": "Pkcs11 Explorer"
+				}
+			]
+		},
+		"commands": [
+			{
+				"command": "pkcs11View.refresh",
+				"title": "Refresh",
+				"category": "PKCS#11 Explorer",
+				"icon": {
+					"light": "resources/light/refresh.svg",
+					"dark": "resources/dark/refresh.svg"
+				}
+			},
+			{
+				"command": "pkcs11View.addModule",
+				"title": "Add Module",
+				"category": "PKCS#11 Explorer"
+			},
+			{
+				"command": "pkcs11View.createDigest",
+				"title": "Create Digest",
+				"category": "PKCS#11 Explorer"
+			},
+			{
+				"command": "pkcs11View.reloadModule",
+				"title": "Reload Module",
+				"category": "PKCS#11 Explorer"
+			},
+			{
+				"command": "pkcs11View.removeModule",
+				"title": "Remove",
+				"category": "PKCS#11 Explorer"
+			},
+			{
+				"command": "pkcs11View.getModuleDescription",
+				"title": "Get Module Description",
+				"category": "PKCS#11 Explorer"
+			},
+			{
+				"command": "pkcs11View.deleteSlot",
+				"title": "Delete",
+				"category": "PKCS#11 Explorer"
+			},
+			{
+				"command": "pkcs11View.getSlotDescription",
+				"title": "Get Slot Description",
+				"category": "PKCS#11 Explorer"
+			},
+			{
+				"command": "pkcs11View.getSlotAvailableMechanisms",
+				"title": "List Available Mechanisms",
+				"category": "PKCS#11 Explorer"
+			},
+			{
+				"command": "pkcs11View.initializeSlot",
+				"title": "Initialize",
+				"category": "PKCS#11 Explorer"
+			},
+			{
+				"command": "pkcs11View.setSlotUserPin",
+				"title": "Set User PIN",
+				"category": "PKCS#11 Explorer"
+			},
+			{
+				"command": "pkcs11View.initializeSlotUserPin",
+				"title": "Initialize User PIN",
+				"category": "PKCS#11 Explorer"
+			},
+			{
+				"command": "pkcs11View.generateAesKey",
+				"title": "Generate AES key",
+				"category": "PKCS#11 Explorer"
+			},
+			{
+				"command": "pkcs11View.generateRsaKeyPair",
+				"title": "Generate RSA key pair",
+				"category": "PKCS#11 Explorer"
+			},
+			{
+				"command": "pkcs11View.generateRsaKey",
+				"title": "Generate RSA key",
+				"category": "PKCS#11 Explorer"
+			},
+			{
+				"command": "pkcs11View.generateEccKey",
+				"title": "Generate ECC key",
+				"category": "PKCS#11 Explorer"
+			},
+			{
+				"command": "pkcs11View.generateEccKeyPair",
+				"title": "Generate ECC key pair",
+				"category": "PKCS#11 Explorer"
+			},
+			{
+				"command": "pkcs11View.getAttribute",
+				"title": "Get attribute",
+				"category": "PKCS#11 Explorer"
+			},
+			{
+				"command": "pkcs11View.getAttributes",
+				"title": "Get all attributes",
+				"category": "PKCS#11 Explorer"
+			},
+			{
+				"command": "pkcs11View.deleteObject",
+				"title": "Delete Object",
+				"category": "PKCS#11 Explorer"
+			},
+			{
+				"command": "pkcs11View.renameObject",
+				"title": "Rename Object",
+				"category": "PKCS#11 Explorer"
+			},
+			{
+				"command": "pkcs11View.setAttribute",
+				"title": "Set Attribute",
+				"category": "PKCS#11 Explorer"
+			},
+			{
+				"command": "pkcs11View.sign",
+				"title": "Sign with key",
+				"category": "PKCS#11 Explorer"
+			},
+			{
+				"command": "pkcs11View.signMultipart",
+				"title": "Sign Multipart with key",
+				"category": "PKCS#11 Explorer"
+			},
+			{
+				"command": "pkcs11View.verify",
+				"title": "Verify with key",
+				"category": "PKCS#11 Explorer"
+			},
+			{
+				"command": "pkcs11View.verifyMultipart",
+				"title": "Verify Multipart with key",
+				"category": "PKCS#11 Explorer"
+			},
+			{
+				"command": "pkcs11View.encrypt",
+				"title": "Encrypt with key",
+				"category": "PKCS#11 Explorer"
+			},
+			{
+				"command": "pkcs11View.decrypt",
+				"title": "Decrypt with key",
+				"category": "PKCS#11 Explorer"
+			},
+			{
+				"command": "pkcs11View.exportCertificate",
+				"title": "Export",
+				"category": "PKCS#11 Explorer"
+			},
+			{
+				"command": "pkcs11View.importCertificate",
+				"title": "Import Certificate",
+				"category": "PKCS#11 Explorer"
+			},
+			{
+				"command": "pkcs11View.exportDataObject",
+				"title": "Export",
+				"category": "PKCS#11 Explorer"
+			},
+			{
+				"command": "pkcs11View.exportPublicKey",
+				"title": "Export",
+				"category": "PKCS#11 Explorer"
+			},
+			{
+				"command": "pkcs11View.exportSecretKey",
+				"title": "Export",
+				"category": "PKCS#11 Explorer"
+			}
+		],
+		"menus": {
+			"view/title": [
+				{
+					"command": "pkcs11View.refresh",
+					"when": "view == pkcs11View",
+					"group": "navigation"
+				}
+			],
+			"view/item/context": [
+				{
+					"command": "pkcs11View.reloadModule",
+					"when": "view == pkcs11View && viewItem == module"
+				},
+				{
+					"command": "pkcs11View.getModuleDescription",
+					"when": "view == pkcs11View && viewItem == module"
+				},
+				{
+					"command": "pkcs11View.removeModule",
+					"when": "view == pkcs11View && viewItem == module"
+				},
+				{
+					"command": "pkcs11View.getSlotDescription",
+					"when": "view == pkcs11View && viewItem == slot",
+					"group": "pkcs11-view-slot-0@0"
+				},
+				{
+					"command": "pkcs11View.getSlotAvailableMechanisms",
+					"when": "view == pkcs11View && viewItem == slot",
+					"group": "pkcs11-view-slot-0@1"
+				},
+				{
+					"command": "pkcs11View.generateAesKey",
+					"when": "view == pkcs11View && viewItem == slot",
+					"group": "pkcs11-view-slot-1@0"
+				},
+				{
+					"command": "pkcs11View.generateEccKey",
+					"when": "view == pkcs11View && viewItem == slot",
+					"group": "pkcs11-view-slot-1@1"
+				},
+				{
+					"command": "pkcs11View.generateRsaKey",
+					"when": "view == pkcs11View && viewItem == slot",
+					"group": "pkcs11-view-slot-1@2"
+				},
+				{
+					"command": "pkcs11View.generateEccKeyPair",
+					"when": "view == pkcs11View && viewItem == slot",
+					"group": "pkcs11-view-slot-1@3"
+				},
+				{
+					"command": "pkcs11View.generateRsaKeyPair",
+					"when": "view == pkcs11View && viewItem == slot",
+					"group": "pkcs11-view-slot-1@4"
+				},
+				{
+					"command": "pkcs11View.createDigest",
+					"when": "view == pkcs11View && viewItem == slot",
+					"group": "pkcs11-view-slot-1@5"
+				},
+				{
+					"command": "pkcs11View.importCertificate",
+					"when": "view == pkcs11View && viewItem == slot",
+					"group": "pkcs11-view-slot-2@0"
+				},
+				{
+					"command": "pkcs11View.initializeSlot",
+					"when": "view == pkcs11View && viewItem == slot",
+					"group": "pkcs11-view-slot-3@0"
+				},
+				{
+					"command": "pkcs11View.initializeSlotUserPin",
+					"when": "view == pkcs11View && viewItem == slot",
+					"group": "pkcs11-view-slot-3@1"
+				},
+				{
+					"command": "pkcs11View.setSlotUserPin",
+					"when": "view == pkcs11View && viewItem == slot",
+					"group": "pkcs11-view-slot-3@2"
+				},
+				{
+					"command": "pkcs11View.deleteSlot",
+					"when": "view == pkcs11View && viewItem == slot",
+					"group": "pkcs11-view-slot-3@3"
+				},
+				{
+					"command": "pkcs11View.getAttribute",
+					"when": "view == pkcs11View && viewItem == DATA || view == pkcs11View && viewItem == CERTIFICATE || view == pkcs11View && viewItem == PUBLIC_KEY || view == pkcs11View && viewItem == PRIVATE_KEY || view == pkcs11View && viewItem == SECRET_KEY",
+					"group": "pkcs11-view-object-0@0"
+				},
+				{
+					"command": "pkcs11View.getAttributes",
+					"when": "view == pkcs11View && viewItem == DATA || view == pkcs11View && viewItem == CERTIFICATE || view == pkcs11View && viewItem == PUBLIC_KEY || view == pkcs11View && viewItem == PRIVATE_KEY || view == pkcs11View && viewItem == SECRET_KEY",
+					"group": "pkcs11-view-object-0@1"
+				},
+				{
+					"command": "pkcs11View.setAttribute",
+					"when": "view == pkcs11View && viewItem == DATA || view == pkcs11View && viewItem == CERTIFICATE || view == pkcs11View && viewItem == PUBLIC_KEY || view == pkcs11View && viewItem == PRIVATE_KEY || view == pkcs11View && viewItem == SECRET_KEY",
+					"group": "pkcs11-view-object-0@2"
+				},
+				{
+					"command": "pkcs11View.renameObject",
+					"when": "view == pkcs11View && viewItem == DATA || view == pkcs11View && viewItem == CERTIFICATE || view == pkcs11View && viewItem == PUBLIC_KEY || view == pkcs11View && viewItem == PRIVATE_KEY || view == pkcs11View && viewItem == SECRET_KEY",
+					"group": "pkcs11-view-object-0@3"
+				},
+				{
+					"command": "pkcs11View.deleteObject",
+					"when": "view == pkcs11View && viewItem == DATA || view == pkcs11View && viewItem == CERTIFICATE || view == pkcs11View && viewItem == PUBLIC_KEY || view == pkcs11View && viewItem == PRIVATE_KEY || view == pkcs11View && viewItem == SECRET_KEY",
+					"group": "pkcs11-view-object-0@4"
+				},
+				{
+					"command": "pkcs11View.sign",
+					"when": "view == pkcs11View && viewItem == PRIVATE_KEY || view == pkcs11View && viewItem == SECRET_KEY",
+					"group": "pkcs11-view-object-1@0"
+				},
+				{
+					"command": "pkcs11View.signMultipart",
+					"when": "view == pkcs11View && viewItem == PRIVATE_KEY || view == pkcs11View && viewItem == SECRET_KEY",
+					"group": "pkcs11-view-object-1@1"
+				},
+				{
+					"command": "pkcs11View.verify",
+					"when": "view == pkcs11View && viewItem == PUBLIC_KEY",
+					"group": "pkcs11-view-object-1@2"
+				},
+				{
+					"command": "pkcs11View.verifyMultipart",
+					"when": "view == pkcs11View && viewItem == PUBLIC_KEY",
+					"group": "pkcs11-view-object-1@3"
+				},
+				{
+					"command": "pkcs11View.encrypt",
+					"when": "view == pkcs11View && viewItem == PUBLIC_KEY || view == pkcs11View && viewItem == SECRET_KEY",
+					"group": "pkcs11-view-object-2@0"
+				},
+				{
+					"command": "pkcs11View.decrypt",
+					"when": "view == pkcs11View && viewItem == PRIVATE_KEY || view == pkcs11View && viewItem == SECRET_KEY",
+					"group": "pkcs11-view-object-2@1"
+				},
+				{
+					"command": "pkcs11View.exportCertificate",
+					"when": "view == pkcs11View && viewItem == CERTIFICATE",
+					"group": "pkcs11-view-object-3@0"
+				},
+				{
+					"command": "pkcs11View.exportDataObject",
+					"when": "view == pkcs11View && viewItem == DATA",
+					"group": "pkcs11-view-object-3@0"
+				},
+				{
+					"command": "pkcs11View.exportPublicKey",
+					"when": "view == pkcs11View && viewItem == PUBLIC_KEY",
+					"group": "pkcs11-view-object-3@0"
+				},
+				{
+					"command": "pkcs11View.exportSecretKey",
+					"when": "view == pkcs11View && viewItem == SECRET_KEY",
+					"group": "pkcs11-view-object-3@0"
+				}
+			]
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"rebuild": "./node_modules/.bin/electron-rebuild",
+		"compile": "npm install && npm rebuild && tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"lint": "eslint . --ext .ts,.tsx",
+		"lint:fix": "npm run lint -- --fix",
+		"webpack": "webpack --mode development",
+		"webpack-dev": "webpack --mode development --watch"
+	},
+	"devDependencies": {
+		"@types/node": "^14.14.33",
+		"@types/vscode": "^1.45.0",
+		"@typescript-eslint/eslint-plugin": "^3.0.2",
+		"@typescript-eslint/parser": "^3.0.2",
+		"acorn": "^8.5.0",
+		"acorn-import-assertions": "^1.7.6",
+		"electron-rebuild": "^2.3.5",
+		"eslint": "^7.1.0",
+		"ts-loader": "^9.2.6",
+		"typescript": "^4.2.3",
+		"webpack": "^5.56.0",
+		"webpack-cli": "^4.8.0"
+	},
+	"dependencies": {
+		"@fidm/x509": "^1.2.1",
+		"@mapbox/node-pre-gyp": "^1.0.0",
+		"electron": "^11.3.0",
+		"graphene-pk11": "^2.2.1",
+		"jsonc-parser": "^0.4.2",
+		"minimist": "^0.2.1",
+		"pkcs11js": "^1.2.2",
+		"reflect-metadata": "^0.1.13"
+	}
+}
