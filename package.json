@@ -172,7 +172,7 @@
 			},
 			{
 				"command": "pkcs11View.getAttributes",
-				"title": "Get attributes",
+				"title": "Get all attributes",
 				"category": "PKCS#11 Explorer"
 			},
 			{
