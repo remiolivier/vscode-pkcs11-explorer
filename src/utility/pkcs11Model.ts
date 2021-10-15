@@ -18,6 +18,7 @@ import { VerifyModel } from './verifyModel';
 import { EncryptModel } from './encryptModel';
 import { DecryptModel } from './decryptModel';
 import { DigestModel, DigestResult } from './digestModel';
+import { Certificate } from '@fidm/x509';
 
 export class Pkcs11Model extends Disposable {
 	configuration: Pkcs11ExplorerConfiguration;
@@ -54,20 +55,26 @@ export class Pkcs11Model extends Disposable {
 			return;
 		}
 
-		if (!fs.existsSync(modulePath[0].path)) {
-			Interactions.showErrorMessage(`Could not add the '${moduleName}' module. '${modulePath}' does not exist.`);
-			return;
+		try
+		{
+			if (!fs.existsSync(modulePath[0].path)) {
+				Interactions.showErrorMessage(`Could not add the '${moduleName}' module. '${modulePath}' does not exist.`);
+				return;
+			}
+
+			const modulesConfiguration = this.configuration.getModules();
+
+			if(modulesConfiguration && modulesConfiguration.has(moduleName)) {
+				Interactions.showErrorMessage("Module already exists.");
+				return;
+			}
+
+			this.configuration.addModule(moduleName, modulePath[0].path);
+			Interactions.showInformationMessage("Module added.");
 		}
-
-		const modulesConfiguration = this.configuration.getModules();
-
-		if(modulesConfiguration && modulesConfiguration.has(moduleName)) {
-			Interactions.showErrorMessage("Module already exists.");
-			return;
+		catch (err) {
+			Interactions.showErrorMessage(`Failed to add module.\n${err}`);
 		}
-
-		this.configuration.addModule(moduleName, modulePath[0].path);
-		Interactions.showInformationMessage("Module added.");
 	}
 
 	public getModules() : Thenable<Pkcs11Node[]> {
@@ -958,9 +965,11 @@ export class Pkcs11Model extends Disposable {
 		}
 
 		try {
-			const certificate = fs.readFileSync(pickedUri[0].path);
-
 			if (certificateFormat == "pem") {
+				const certificate = fs.readFileSync(pickedUri[0].path);
+
+				const cert = Certificate.fromPEM(certificate);
+				
 				session.create({
 					class: graphene.ObjectClass.CERTIFICATE,
 					certType: graphene.CertificateType.X_509,
@@ -968,9 +977,13 @@ export class Pkcs11Model extends Disposable {
 					token: true,
 					id: Buffer.from(id),
 					label: label,
-					subject: Buffer.from("test subject"),
-					value: Buffer.from(certificate),
+					serial: Buffer.from(cert.serialNumber),
+					subject: Buffer.from(cert.subject.commonName),
+					issuer: Buffer.from(cert.issuer.commonName),
+					value: Buffer.from(cert.raw),
 				});
+				
+				Interactions.showInformationMessage("Certificate imported successfully");
 			}
 			else {
 				Interactions.showErrorMessage(`Format not supported`);

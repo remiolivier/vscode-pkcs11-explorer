@@ -41,7 +41,7 @@ export class Pkcs11View {
 		vscode.commands.registerCommand('pkcs11View.generateEccKey', (node: Pkcs11Node) => pkcs11Model.generateEccKey(node as SlotNode).then(() => treeDataProvider.refresh()));
 		vscode.commands.registerCommand('pkcs11View.generateEccKeyPair', (node: Pkcs11Node) => pkcs11Model.generateEccKeyPair(node as SlotNode).then(() => treeDataProvider.refresh()));
 		vscode.commands.registerCommand('pkcs11View.importCertificate', (node: Pkcs11Node) => pkcs11Model.importCertificate(node as SlotNode).then(() => treeDataProvider.refresh()));
-
+		
 		// Object commands
 		vscode.commands.registerCommand('pkcs11View.deleteObject', (node: Pkcs11Node) => { pkcs11Model.deleteObject(node as ObjectNode).then(() => treeDataProvider.refresh()); });
 		vscode.commands.registerCommand('pkcs11View.renameObject', (node: Pkcs11Node) => { pkcs11Model.renameObject(node as ObjectNode).then(() => treeDataProvider.refresh()); });

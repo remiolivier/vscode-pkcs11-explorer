@@ -9,7 +9,7 @@
 		"type": "git",
 		"url": "https://github.com/remiolivier/vscode-pkcs11-explorer"
 	},
-	"license": "SEE LICENSE IN FILE LICENSE",
+	"license": "MIT",
 	"homepage": "https://github.com/remiolivier/vscode-pkcs11-explorer",
 	"bugs": {
 		"url": "https://github.com/remiolivier/vscode-pkcs11-explorer/issues"
@@ -435,6 +435,7 @@
 		"webpack-cli": "^4.8.0"
 	},
 	"dependencies": {
+		"@fidm/x509": "^1.2.1",
 		"@mapbox/node-pre-gyp": "^1.0.0",
 		"electron": "^11.3.0",
 		"graphene-pk11": "^2.2.1",
